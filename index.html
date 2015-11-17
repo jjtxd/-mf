@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Minimal Form Interface</title>
+
+		<!-- <link rel="stylesheet" type="text/css" href="css/master.css"> -->
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		
+
+		<script type="text/javascript">
+			$( document ).ready(function() {
+			    qCount = $('.number .number-total').text();
+			    qCount =  parseInt(qCount);
+			    $('.number').hide();
+			});
+		</script>
+
+	</head>
+	<body>
+		<div class="container">
+			<section>
+				<form id="theForm" class="simform up" autocomplete="off">
+					<div class="simform-inner">
+						<ol class="questions">
+							<li data-id="1" class="1">
+								<span><label for="q1">
+									<span class="georgia italic strong">your </span>
+									<span class="roboto light">name </span>
+									<span class="roboto-slab strong txd-green">?</span>
+								</label></span>
+								<input autocomplete="off" id="q1" name="q1" type="text"/>
+							<div class="progress"></div>
+							<span class="error-message"></span>
+							</li>
+							<li data-id="2" class="2">
+								<span><label for="q2">
+									<span class="georgia italic strong">email </span>
+									<span class="roboto light">address </span>
+									<span class="roboto-slab strong txd-green">?</span>
+								</label></span>
+								<input autocomplete="off" id="q2" type="email" name="q2" type="text"/>
+								<div class="progress"></div>
+								<span class="error-message"></span>
+							</li>
+							<li data-id="3" class="3">
+								<span><label for="q3">
+									<span class="georgia italic strong">telephone </span>
+									<span class="roboto light">number </span>
+									<span class="roboto-slab strong txd-green">?</span>
+								</label></span>
+								<input autocomplete="off" id="q3" name="q3" type="text"/>
+							<div class="progress"></div>
+							<span class="error-message"></span>
+							</li>
+							<li data-id="4" class="4">
+								<span><label for="q4">
+									<span class="georgia italic strong">your </span>
+									<span class="roboto light">enquiry </span>
+									<span class="roboto-slab strong txd-green">?</span>
+								</label></span>
+								<input autocomplete="off" id="q4" name="q4" type="text"/>
+							<div class="progress"></div>
+							<span class="error-message"></span>
+							</li>
+
+
+						
+						</ol><!-- /questions -->
+						<button class="submit" type="submit">Send answers</button>
+						<div class="controls">
+							<div class="next roboto-slab strong">></div>
+							<!-- <div class="progress"></div> -->
+							<span class="number">
+								<span class="number-current"></span>
+								<span class="number-total"></span>
+							</span>
+							<!-- <span class="error-message"></span> -->
+						</div><!-- / controls -->
+					</div><!-- /simform-inner -->
+					<span class="final-message"></span>
+
+				</form><!-- /simform -->
+				
+				<nav class="nav-dots">
+					<button data-id="1" class="1 dot-current"></button>
+					<button data-id="2" class="2"></button>
+					<button data-id="3" class="3"></button>
+					<button data-id="4" class="4"></button>
+				</nav>
+
+			</section>
+		
+		</div>
+		<script src="js/classie.js"></script>
+		<script src="js/stepsForm.js"></script>
+
+		<script>
+			var theForm = document.getElementById( 'theForm' );
+
+
+			new stepsForm( theForm, {
+				onSubmit : function( form ) {
+					// hide form
+					classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+					/*
+					form.submit()
+					or
+					AJAX request (maybe show loading indicator while we don't have an answer..)
+					*/
+
+					// let's just simulate something...
+					var messageEl = theForm.querySelector( '.final-message' );
+					messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+					classie.addClass( messageEl, 'show' );
+				}
+			} );
+		</script>
+
+	</body>
+</html>
